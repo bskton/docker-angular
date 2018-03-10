@@ -1,21 +1,38 @@
 # Docker image for application development with Angular
 
-## Build
+## Building
+
+### Build a docker image
 ```
 sudo docker build -t bskton/angular .
 ```
 
-## Create a new application
+### Log in to the Docker public registry
 ```
-sudo docker run --rm -it -v $PWD:/app -u $(id -u):$(id -g) bskton/angular ng new my-app
-```
-
-## Install node packages for the application
-```
-sudo docker run --rm -it -v $PWD:/app -u $(id -u):$(id -g) bskton/angular npm install
+sudo docker login
 ```
 
-## Run application in development environment
+### Upload the image to the repository
 ```
-sudo docker run --rm -it -v $PWD:/app -p 4200:4200 -p 9876:9876 -u $(id -u):$(id -g) bskton/angular
+sudo docker push bskton/angular
+```
+
+### Using
+
+#### Create a new application
+```
+sudo docker run --rm -it -v $PWD:/app -u $(id -u):$(id -g) \
+bskton/angular ng new my-app
+```
+
+#### Run application in development environment
+```
+sudo docker run --rm -it -v $PWD:/app -p 4200:4200 -p 9876:9876 \
+-u $(id -u):$(id -g) bskton/angular
+```
+
+#### Install node packages for the application
+```
+sudo docker run --rm -it -v $PWD:/app -u $(id -u):$(id -g) \
+bskton/angular npm install
 ```
