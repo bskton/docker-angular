@@ -1,4 +1,4 @@
-FROM node:9.8.0
+FROM node:10.0.0
 
 RUN apt-get update && apt-get install -y curl xvfb chromium
 
